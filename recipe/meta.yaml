@@ -1,18 +1,18 @@
 {% set name = "django-log-viewer" %}
-{% set version = "1.1.7" %}
+{% set version = "1.1.8" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/django-log-viewer-{{ version }}.tar.gz
-  sha256: eba39271fe8315836fe86fce27fc60730faecc7864e22a2cc363c3eb95a00b84
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 3b70837cc1877356831a5d4831d30426809ccd12a0705b7fb11512ee17f3b50a
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
@@ -20,6 +20,7 @@ requirements:
     - pip
     - setuptools
   run:
+    - django
     - python >={{ python_min }}
 
 test:
